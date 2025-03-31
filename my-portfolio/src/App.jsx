@@ -7,20 +7,16 @@ import HomePage from './pages/HomePage'
 function App() {
   const [isLoading, setIsLoading] = useState(true)
   
-  useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
-    
-    return () => clearTimeout(timer)
-  }, [])
+  const handleSplashComplete = () => {
+    setIsLoading(false)
+  }
 
   if (isLoading) {
-    return <SplashScreen />
+    return <SplashScreen onComplete={handleSplashComplete} />
   }
 
   return (
+    <div className="bg-black min-h-screen text-white">
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -28,6 +24,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </div>
   )
 }
 
