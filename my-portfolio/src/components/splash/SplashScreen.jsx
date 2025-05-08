@@ -26,9 +26,9 @@ const SplashScreen = ({ onComplete }) => {
         
         setTimeout(() => {
           if (onComplete) onComplete();
-        }, 800); // Transition duration
-      }, 500); // Time to show completed state
-    }, 7000); // Show splash screen for 5 seconds
+        }, 1); // Transition duration
+      }, 4000); // Time to show completed state
+    }, 10000); // Show splash screen for 5 seconds
     
     return () => {
       clearTimeout(timer);
@@ -52,7 +52,7 @@ const SplashScreen = ({ onComplete }) => {
       />
       
       {/* Content overlay with responsive text sizes */}
-      <div className={`relative z-10 text-center px-4 sm:px-6 max-w-full transition-opacity duration-500 ${
+      <div className={`relative z-10 text-center px-4 sm:px-6 max-w-full transition-opacity bduration-500 ${
         expanding ? 'opacity-0' : 'opacity-100'
       }`}>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white font-orbitron tracking-wider">
@@ -81,6 +81,11 @@ const SplashScreen = ({ onComplete }) => {
           <p className="text-lg sm:text-xl text-white/80 animate-pulse font-orbitron">Entering...</p>
         )}
       </div>
+              {/* Copyright notice */}
+      <div className="absolute bottom-4 left-0 right-0 text-center z-10 px-3">
+        <p className="text-xs sm:text-[15px] text-white/90 font-michroma">© 2025 Sandith Sithmaka Thenuwara</p>
+      </div>
+
     </div>
   );
 };
