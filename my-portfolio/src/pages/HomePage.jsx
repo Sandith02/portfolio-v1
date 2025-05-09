@@ -28,8 +28,9 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="bg-black text-white">
+    <div className=" text-white">
       {/* Hero Section */}
+      
       <Hero />
       
       {/* Featured Projects Section */}
