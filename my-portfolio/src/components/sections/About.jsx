@@ -38,49 +38,75 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section id="about-section" className="relative overflow-hidden bg-black">
-      {/* Notched top shape for section */}
-      <div className="absolute top-0 left-0 right-0 h-16 bg-[#05011b]">
-        {/* SVG for the notched shape */}
-        <svg className="absolute top-0 left-0 w-full h-16" preserveAspectRatio="none" viewBox="0 0 1440 64">
-          <path
-            d="M0,0 L360,0 L440,64 L1000,64 L1080,0 L1440,0 L1440,64 L0,64 Z"
-            fill="#111827" 
-          />
-        </svg>
+    <section id="about-section" className="relative py-24 overflow-hidden bg-[#010a0f]">
+      {/* Background gradient and effects - matching the hero section */}
+      <div className="absolute inset-0 z-0">
+        {/* Dark background base */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
+        
+        {/* Grid pattern overlay like the hero buttons tech section */}
+        <div 
+          className="absolute inset-0 opacity-20 bg-cover bg-center"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(98, 113, 131, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(98, 113, 131, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '30px 30px'
+          }}
+        ></div>
+        
+        {/* Subtle metal grid effect like in hero */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="w-full h-full bg-cover bg-center" 
+            style={{
+              backgroundImage: 'url(/src/assets/bg19.jpeg)',
+              filter: 'grayscale(100%) brightness(10%)'
+            }}
+          ></div>
+        </div>
       </div>
       
-      {/* Main content section with background */}
-      <div className="pt-16 bg-[#111827]"> {/* Add padding to account for the notched top */}
-        <div className="container mx-auto px-6 py-16 relative z-10">
-          {/* Section title with same gradient as hero section */}
-          <div className="text-center mb-16">
-            <h2 
-              className="text-5xl md:text-6xl font-bold font-orbitron mb-4 inline-block relative bg-gradient-to-r from-[#c7cdd3] to-[#627183] bg-clip-text text-transparent"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(2rem)',
-                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
-              }}
-            >
-              About Me
-            </h2>
-            
-            {/* Subtle divider like in hero section */}
-            <div 
-              className="h-px w-[120px] mx-auto mt-2"
-              style={{
-                background: 'linear-gradient(to right, transparent, #627183, transparent)',
-                opacity: isVisible ? 1 : 0,
-                transition: 'opacity 1.2s ease-in-out 0.3s'
-              }}
-            ></div>
-          </div>
+      {/* Content container */}
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Section title with same gradient as hero section */}
+        <div className="text-center mb-16">
+          <h2 
+            className="text-5xl md:text-6xl font-bold font-orbitron mb-4 inline-block relative bg-gradient-to-r from-[#c7cdd3] to-[#627183] bg-clip-text text-transparent"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(2rem)',
+              transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+          >
+            About Me
+          </h2>
           
-          {/* Main content with simple layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* Subtle divider like in hero section */}
+          <div 
+            className="h-px w-[120px] mx-auto mt-2"
+            style={{
+              background: 'linear-gradient(to right, transparent, #627183, transparent)',
+              opacity: isVisible ? 1 : 0,
+              transition: 'opacity 1.2s ease-in-out 0.3s'
+            }}
+          ></div>
+        </div>
+        
+        {/* Main content with glass card effect */}
+        <div className="relative rounded-lg overflow-hidden backdrop-blur-sm"
+          style={{
+            background: 'rgba(20, 25, 35, 0.3)',
+            boxShadow: '0 0 30px rgba(0, 0, 0, 0.3)',
+            borderTop: '1px solid rgba(98, 113, 131, 0.2)',
+            borderLeft: '1px solid rgba(98, 113, 131, 0.2)',
+            borderRight: '1px solid rgba(0, 0, 0, 0.2)',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.2)'
+          }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 lg:p-10">
             {/* Profile image with styling similar to hero */}
-            <div className="lg:col-span-4 flex justify-center lg:justify-end items-start">
+            <div className="lg:col-span-4 flex justify-center items-center">
               <div 
                 className="relative w-[18rem] h-[18rem] md:w-[22rem] md:h-[22rem]"
                 style={{
@@ -147,25 +173,41 @@ const AboutSection = () => {
               </div>
             </div>
           </div>
-          
-          {/* Bottom divider */}
-          <div className="mt-16 h-px w-full max-w-xs mx-auto bg-gradient-to-r from-transparent via-[#627183] to-transparent animate-pulse-subtle"></div>
         </div>
-      </div>
-      
-      {/* Notched bottom shape for section (if you want it to match top) */}
-      <div className="relative bg-[#111827]">
-        {/* SVG for the notched shape */}
-        <svg className="w-full h-16" preserveAspectRatio="none" viewBox="0 0 1440 64">
-          <path
-            d="M0,0 L1440,0 L1440,64 L1080,64 L1000,0 L440,0 L360,64 L0,64 Z"
-            fill="#111827" 
-          />
-        </svg>
+        
+        {/* Technologies section - matching hero's tech grid */}
+        <div className="mt-16">
+          {/* <h3 className="text-lg font-semibold text-[#c7cdd3] mb-6 font-orbitron tracking-wider text-center">
+            TECHNOLOGIES
+          </h3>
+          
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-4">
+            {["React", "Java", "JavaScript", "Spring Boot", "MongoDB"].map((tech, index) => (
+              <div 
+                key={index}
+                className="bg-gray-900/20 backdrop-blur-sm p-4 rounded-lg border border-gray-800 hover:bg-gray-800/40 transition-all duration-300 flex flex-col items-center justify-center hover:scale-105"
+                style={{
+                  animation: isVisible ? `techFadeIn 0.5s ease-out forwards ${index * 80}ms` : 'none',
+                  opacity: 0
+                }}
+              >
+                <span className="text-gray-300 text-sm font-orbitron">{tech}</span>
+              </div>
+            ))}
+          </div> */}
+          
+          {/* Animated divider matching hero section */}
+          <div className="mt-8 h-px w-full max-w-xs mx-auto bg-gradient-to-r from-transparent via-[#627183] to-transparent animate-pulse-subtle"></div>
+        </div>
       </div>
       
       {/* Add global animation for effects */}
       <style jsx>{`
+        @keyframes techFadeIn {
+          0% { opacity: 0; transform: translateY(10px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        
         .animate-pulse-subtle {
           animation: pulse 3s infinite;
         }
