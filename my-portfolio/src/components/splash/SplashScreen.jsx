@@ -352,6 +352,7 @@
 // export default SplashScreen;
 
 // src/components/SplashScreen.jsx
+// src/components/SplashScreen.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Code, Server, Database, Layout, Coffee, FileCode, GitBranch, Globe, PenTool, MonitorSmartphone } from 'lucide-react';
 
@@ -509,10 +510,15 @@ const SplashScreen = ({ onComplete }) => {
           expanding ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
         }`}
       >
-        {/* Full name with gradient text */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-[#a0b4cc] to-[#8c96b5] bg-clip-text text-transparent font-orbitron tracking-wider">
-          Sandith Sithmaka Thenuwara
-        </h1>
+        {/* Welcome message with code-style design */}
+        <div className="mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#a0b4cc] to-[#8c96b5] bg-clip-text text-transparent font-orbitron tracking-wider">
+            &lt;Beyond /&gt; Code
+          </h1>
+          <p className="text-lg text-gray-400 mt-2 font-michroma">
+            Turning vision into digital reality
+          </p>
+        </div>
         
         {/* Terminal window */}
         <div className="max-w-md mx-auto mb-8 overflow-hidden rounded-md shadow-xl" style={{
@@ -596,7 +602,7 @@ const SplashScreen = ({ onComplete }) => {
           </div>
         ) : (
           <p className="text-lg text-[#a0b4cc] font-orbitron" style={{animation: 'pulse 2s infinite'}}>
-            {progress === 100 ? "Entering..." : "Loading..."}
+            {progress === 100 ? "Entering Portfolio..." : "Loading..."}
           </p>
         )}
       </div>
