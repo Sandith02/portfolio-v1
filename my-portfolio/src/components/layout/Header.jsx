@@ -1,3 +1,4 @@
+// src/components/layout/Header.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
@@ -25,10 +26,25 @@ const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-black/90 backdrop-blur-sm py-4 shadow-lg' : 'bg-transparent py-8'
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      isScrolled ? 'py-4' : 'py-8'
     }`}>
-      <div className="container mx-auto px-4">
+      {/* Gradient noise background - only visible when scrolled */}
+      <div 
+        className={`absolute inset-0 transition-opacity duration-500 ${
+          isScrolled ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          backgroundImage: `
+            linear-gradient(to bottom, #101114, #0a0b0e),
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+          `,
+          boxShadow: '0 4px 30px #00000040',
+          borderBottom: '1px solid #2a2c33'
+        }}
+      ></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Desktop three-section layout */}
         <div className="hidden md:flex items-center justify-between">
           {/* Left: Name */}
@@ -43,25 +59,37 @@ const Header = () => {
             <ul className="flex font-orbitron space-x-8">
               <li>
                 <NavLink to="/" className={({isActive}) =>
-                  isActive ? "text-[#b6bbc2] font-medium" : "text-white hover:text-[#b6bbc2] transition-colors"}>
+                  isActive 
+                    ? "text-[#b6bbc2] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-[#627183]" 
+                    : "text-white hover:text-[#b6bbc2] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#627183] after:transition-all hover:after:w-full"
+                }>
                   Home
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/about" className={({isActive}) =>
-                  isActive ? "text-[#b6bbc2] font-medium" : "text-white hover:text-[#b6bbc2] transition-colors"}>
+                  isActive 
+                    ? "text-[#b6bbc2] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-[#627183]" 
+                    : "text-white hover:text-[#b6bbc2] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#627183] after:transition-all hover:after:w-full"
+                }>
                   About
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/projects" className={({isActive}) =>
-                  isActive ? "text-[#b6bbc2] font-medium" : "text-white hover:text-[#b6bbc2] transition-colors"}>
+                  isActive 
+                    ? "text-[#b6bbc2] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-[#627183]" 
+                    : "text-white hover:text-[#b6bbc2] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#627183] after:transition-all hover:after:w-full"
+                }>
                   Projects
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/contact" className={({isActive}) =>
-                  isActive ? "text-[#b6bbc2] font-medium" : "text-white hover:text-[#b6bbc2] transition-colors"}>
+                  isActive 
+                    ? "text-[#b6bbc2] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-[#627183]" 
+                    : "text-white hover:text-[#b6bbc2] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#627183] after:transition-all hover:after:w-full"
+                }>
                   Contact
                 </NavLink>
               </li>
@@ -74,7 +102,7 @@ const Header = () => {
               href="https://github.com/SandithSithmaka" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="bg-gray-800/50 hover:bg-gray-700 text-white font-orbitron py-2 px-4 rounded-md transition-colors flex items-center border border-gray-700/50"
+              className="bg-[#20212880] hover:bg-[#353740b3] text-white font-orbitron py-2 px-4 rounded-md transition-all duration-300 flex items-center border border-[#47495880] hover:border-[#5b5e6eb3] hover:shadow-[0_0_15px_rgba(100,149,237,0.15)]"
             >
               <svg 
                 className="w-5 h-5 mr-2" 
@@ -101,11 +129,11 @@ const Header = () => {
               href="https://github.com/SandithSithmaka" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white p-1"
+              className="text-[#627183] hover:text-[#b6bbc2] transition-all group"
               aria-label="GitHub"
             >
               <svg 
-                className="w-6 h-6" 
+                className="w-6 h-6 group-hover:scale-110 transition-transform" 
                 fill="currentColor" 
                 viewBox="0 0 24 24" 
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,12 +144,12 @@ const Header = () => {
             
             {/* Mobile menu button */}
             <button
-              className="text-white font-orbitron focus:outline-none"
+              className="text-[#627183] hover:text-[#b6bbc2] transition-all group font-orbitron focus:outline-none"
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 group-hover:scale-110 transition-transform"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -138,9 +166,19 @@ const Header = () => {
         </div>
       </div>
       
-      {/* Mobile navigation dropdown */}
+      {/* Mobile navigation dropdown with matching gradient background */}
       {isMenuOpen && (
-        <div className="md:hidden bg-black/90 backdrop-blur-sm mt-2">
+        <div 
+          className="md:hidden mt-2 relative"
+          style={{
+            backgroundImage: `
+              linear-gradient(to bottom, #101114, #0a0b0e),
+              url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+            `,
+            boxShadow: '0 4px 30px #00000040',
+            borderBottom: '1px solid #2a2c33'
+          }}
+        >
           <ul className="flex flex-col px-8 py-5 font-orbitron">
             <li className="py-2">
               <NavLink
