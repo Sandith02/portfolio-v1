@@ -29,7 +29,7 @@ const AboutSection = () => {
   // Preload the profile image
   useEffect(() => {
     const img = new Image();
-    img.src = '/src/assets/about-me.png';
+    img.src = '/about-me.png';
     img.onload = () => setImageLoaded(true);
     
     // Return early if image is already in browser cache
@@ -132,7 +132,7 @@ const AboutSection = () => {
                 <div className="relative rounded-full w-48 h-48 md:w-64 md:h-64 overflow-hidden border-2 border-[#2a3a50] mb-6">
                   {imageLoaded ? (
                     <img 
-                      src="/src/assets/about-me.png"
+                      src="/about-me.png"
                       alt="Sandith Sithmaka Thenuwara" 
                       className="w-full h-full object-cover"
                     />
