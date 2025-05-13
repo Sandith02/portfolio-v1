@@ -1,6 +1,6 @@
 // src/components/ProjectsSection.jsx
 import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, Code, Layers, Database } from 'lucide-react';
+import { Github, ExternalLink, Code, Layers, Database,MonitorPlay } from 'lucide-react';
 
 const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,28 +32,29 @@ const ProjectsSection = () => {
       id: 1,
       title: "DoctorAid",
       description: "A web application designed for doctors using React, JavaScript, and Vite, enabling patient management. Includes a patient-facing mobile application developed with React Native for appointment booking and digital prescription access.",
-      image: "/src/assets/projects/doctoraid.png", // You'll need to add this image
+      image: "/Doctoraid.png", // You'll need to add this image
       tags: ["React", "JavaScript", "Vite", "React Native", "MERN"],
       category: "full-stack",
       demo: "https://doctoraid.site",
       github: "https://github.com/DoctorAid",
+      Render:"https://doctor-aid.onrender.com/",
       featured: true
     },
     {
       id: 2,
       title: "Ticket Booking System",
       description: "Developed a concurrent ticket booking system using Spring Boot with RESTful APIs for core functionalities, ensuring thread safety and data consistency. Implemented OOP principles and synchronization mechanisms to prevent double bookings and race conditions.",
-      image: "/src/assets/projects/ticket-booking.png", // You'll need to add this image
-      tags: ["React", "Spring Boot", "Java", "REST API"],
-      category: "back-end",
-      github: "https://github.com/Sandith02/OOP-CW",
+      image: "/SimpleTickets.png", // You'll need to add this image
+      tags: ["React", "Spring Boot", "Java", "REST API", "MySQL"],
+      category: "full-stack",
+      github: "https://github.com/Sandith02/CW_OOP-Fullstack-Application",
       featured: true
     },
     {
       id: 3,
       title: "Real-Estate Website",
       description: "Developed a modern and responsive real estate website using React and Tailwind CSS. Used React components to build dynamic and interactive features, enabling users to easily search, filter, and view property listings.",
-      image: "/src/assets/projects/real-estate.png", // You'll need to add this image
+      image: "/adobiq.png", // You'll need to add this image
       tags: ["React", "CSS"],
       category: "front-end",
       github: "https://github.com/Sandith02/Real-State-Web-Frontend",
@@ -63,7 +64,7 @@ const ProjectsSection = () => {
       id: 4,
       title: "E-Commerce Site",
       description: "An E-Commerce site using HTML and CSS alongside with JavaScript, contributed for store and checkout functions. Applied modern CSS techniques including Flexbox and Grid layouts to ensure mobile responsiveness.",
-      image: "/src/assets/projects/ecommerce.png", // You'll need to add this image
+      image: "/greenmart.lk.png", // You'll need to add this image
       tags: ["JavaScript", "HTML", "CSS"],
       category: "front-end",
       featured: false
@@ -200,6 +201,18 @@ const ProjectsSection = () => {
                 {/* Placeholder gradient if image is not available */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#1a2330] to-[#0a1520]"></div>
                 
+                 {/* Project image */}
+                 {project.image && (
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover z-[1]"
+                    onError={(e) => {
+                    e.target.style.display = 'none'; // Hide image on error
+                    }}
+                  />
+                 )}
+
                 {/* Featured badge */}
                 {project.featured && (
                   <div className="absolute top-3 right-3 bg-gray-800/80 text-[#a0b4cc] text-xs py-1 px-2 rounded-md z-10 border border-[#2a3a50]">
@@ -257,6 +270,18 @@ const ProjectsSection = () => {
                       <ExternalLink className="w-5 h-5" />
                     </a>
                   )}
+
+                  {project.Render && (
+                    <a 
+                      href={project.Render} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-gray-800/70 p-2 rounded-md text-gray-300 hover:text-[#a0b4cc] hover:bg-gray-800 transition-all duration-300"
+                      aria-label={`Render live demo for ${project.title}`}
+                    >
+                      <MonitorPlay className="w-5 h-5" />
+                    </a>
+              )}
                 </div>
               </div>
             </div>
@@ -272,7 +297,7 @@ const ProjectsSection = () => {
           }}
         >
           <a 
-            href="https://github.com/SandithSithmaka" 
+            href="https://github.com/Sandith02" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center bg-gray-800/80 hover:bg-gray-700/80 text-gray-200 font-medium py-3 px-6 rounded-md transition-all duration-300 space-x-2 font-orbitron border border-gray-700/50 hover:border-[#2a3a50] hover:shadow-[0_0_15px_rgba(160,180,204,0.15)]"

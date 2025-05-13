@@ -544,6 +544,9 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Code, Terminal, Database, Layout, Coffee, FileCode, GitBranch, Globe, PenTool, Github, MonitorSmartphone, Server } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+gsap.registerPlugin(ScrollToPlugin);
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -575,6 +578,17 @@ const Hero = () => {
     { name: "Figma", icon: <PenTool className="w-4 h-4" />, color: "text-purple-500" },
     { name: "GitHub", icon: <Github className="w-4 h-4" />, color: "text-gray-200" }
   ];
+  
+  const scrollToSection = (sectionId) => {
+  gsap.to(window, {
+    duration: 1.2, 
+    scrollTo: {
+      y: `#${sectionId}`,
+      offsetY: 50 // Offset if needed
+    },
+    ease: "sine.inOut" // Many easing options available
+  });
+  };
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-12">
@@ -644,24 +658,24 @@ const Hero = () => {
             </h1>
             
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto lg:mx-0">
-              I'm Sandith Sithmaka, a Computer Science student passionate about developing creative solutions to technical challenges. I create responsive web applications with modern technologies.
+              I'm Sandith Sithmaka Thenuwara, a Computer Science undergraduate passionate about developing creative solutions to technical challenges. I create responsive web applications with modern technologies.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link 
-                to="/projects" 
+              <button 
+                onClick={() => scrollToSection('projects')}
                 className="bg-gray-800/80 hover:bg-gray-700/80 text-white font-medium py-3 px-6 rounded-md transition-all duration-300 flex items-center justify-center space-x-2 font-orbitron border border-gray-700/50 hover:border-[#2a3a50] hover:shadow-[0_0_15px_rgba(160,180,204,0.15)]"
               >
                 <span>View My Work</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
+              </button>
               
-              <Link 
-                to="/contact" 
+              <button 
+                onClick={() => scrollToSection('contact')}
                 className="bg-transparent hover:bg-gray-800/50 text-white font-medium py-3 px-6 rounded-md transition-all duration-300 flex items-center justify-center space-x-2 font-orbitron border border-gray-700/50 hover:border-[#2a3a50]"
               >
                 <span>Get In Touch</span>
-              </Link>
+              </button>
             </div>
             
             {/* Tech stack */}

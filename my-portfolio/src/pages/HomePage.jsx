@@ -9,31 +9,30 @@ import TerminalButton from '../components/sections/Terminal'
 
 const HomePage = () => {
   return (
-    <div className=" ">
-      <section className="">
+    <div className="">
+      <section id="hero">
         <Hero />
       </section>
-  
-      <section className=" ">
+ 
+      <section id="terminal">
         <TerminalButton />
       </section>
-      
-      <section className=" ">
+     
+      <section id="about">
         <AboutSection />
       </section>
 
-      <section className=" ">
+      <section id="skills">
         <SkillsComponent />
       </section>
 
-      <section className=" ">
+      <section id="projects">
         <ProjectsSection />
       </section>
 
-      <section className=" ">
+      <section id="contact">
         <ContactSection/>
       </section>
-
     </div>
   )
 }

@@ -150,7 +150,7 @@ const AboutSection = () => {
                 </p>
                 
                 <a 
-                  href="/src/assets/Sandith_Thenuwara_CV.pdf" 
+                  href="/Sandith Sithmaka Thenuwara CV.pdf" 
                   download
                   className="bg-gray-800/80 hover:bg-gray-700/80 text-gray-200 font-medium py-3 px-6 rounded-md transition-all duration-300 flex items-center space-x-2 font-orbitron border border-gray-700/50 hover:border-[#2a3a50] hover:shadow-[0_0_15px_rgba(160,180,204,0.15)] mt-auto"
                 >
@@ -319,7 +319,8 @@ const AboutSection = () => {
                     <span className="bg-gray-800/60 text-[#8c96b5] text-xs py-1 px-2 rounded-md">React Native</span>
                   </div>
                   <div className="mt-3">
-                    <a href="https://doctoraid.site" target="_blank" rel="noopener noreferrer" className="text-[#a0b4cc] hover:underline text-sm mr-4">View Live</a>
+                    <a href="https://doctoraid.site" target="_blank" rel="noopener noreferrer" className="text-[#a0b4cc] hover:underline text-sm mr-4">Main Site</a>
+                    <a href="https://doctor-aid.onrender.com/" target="_blank" rel="noopener noreferrer" className="text-[#a0b4cc] hover:underline text-sm mr-4">View Live</a>
                     <a href="https://github.com/DoctorAid" target="_blank" rel="noopener noreferrer" className="text-[#a0b4cc] hover:underline text-sm">GitHub</a>
                   </div>
                 </div>
@@ -340,7 +341,7 @@ const AboutSection = () => {
                     <span className="bg-gray-800/60 text-[#8c96b5] text-xs py-1 px-2 rounded-md">Java</span>
                   </div>
                   <div className="mt-3">
-                    <a href="https://github.com/Sandith02/OOP-CW" target="_blank" rel="noopener noreferrer" className="text-[#a0b4cc] hover:underline text-sm">GitHub</a>
+                    <a href="https://github.com/Sandith02/CW_OOP-Fullstack-Application" target="_blank" rel="noopener noreferrer" className="text-[#a0b4cc] hover:underline text-sm">GitHub</a>
                   </div>
                 </div>
                 
