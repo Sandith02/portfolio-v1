@@ -5,6 +5,8 @@ import AboutSection from '../components/sections/About'
 import ContactSection from '../components/sections/Contact'
 import ProjectsSection from '../components/sections/Projects'
 import SkillsComponent from '../components/sections/Skills'
+import TerminalButton from '../components/sections/Terminal'
+
 const HomePage = () => {
   return (
     <div className=" ">
@@ -12,6 +14,10 @@ const HomePage = () => {
         <Hero />
       </section>
   
+      <section className=" ">
+        <TerminalButton />
+      </section>
+      
       <section className=" ">
         <AboutSection />
       </section>
