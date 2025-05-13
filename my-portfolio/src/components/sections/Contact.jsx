@@ -163,7 +163,7 @@ const ContactSection = () => {
                   <h4 className="text-gray-300 mb-4 font-orbitron">Connect</h4>
                   <div className="flex space-x-4">
                     <a 
-                      href="https://github.com/SandithSithmaka" 
+                      href="https://github.com/Sandith02" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="bg-gray-800/70 p-2 rounded-md text-gray-300 hover:text-[#a0b4cc] hover:bg-gray-800 transition-all duration-300"
@@ -173,7 +173,7 @@ const ContactSection = () => {
                       </svg>
                     </a>
                     <a 
-                      href="https://linkedin.com/in/sithmaka" 
+                      href="https://www.linkedin.com/in/sandith02/" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="bg-gray-800/70 p-2 rounded-md text-gray-300 hover:text-[#a0b4cc] hover:bg-gray-800 transition-all duration-300"
@@ -183,7 +183,7 @@ const ContactSection = () => {
                       </svg>
                     </a>
                     <a 
-                      href="https://twitter.com/SandithSithmaka" 
+                      href="https://x.com/Sandith02?t=uzExcgCq8Ui_uAnHYh5kJg&s=09" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="bg-gray-800/70 p-2 rounded-md text-gray-300 hover:text-[#a0b4cc] hover:bg-gray-800 transition-all duration-300"

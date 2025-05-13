@@ -231,10 +231,14 @@
 
 // export default Header;
 
-// src/components/layout/Header.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Github } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+// Register ScrollToPlugin
+gsap.registerPlugin(ScrollToPlugin);
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -257,6 +261,41 @@ const Header = () => {
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  
+  // Enhanced scroll function using GSAP with sine.inOut easing
+  const scrollToSection = (sectionId) => {
+    // Close mobile menu if open
+    if (isMenuOpen) setIsMenuOpen(false);
+    
+    // Only scroll if we're on the home page
+    if (location.pathname === '/') {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        // Get the header height for offset calculation
+        const headerElement = document.querySelector('header');
+        const headerHeight = headerElement ? headerElement.offsetHeight : 80;
+        
+        // Use GSAP to scroll with sine.inOut easing
+        gsap.to(window, {
+          duration: 1, // Slightly longer for sine.inOut to feel smooth
+          scrollTo: {
+            y: `#${sectionId}`,
+            offsetY: headerHeight // Dynamic offset based on actual header height
+          },
+          ease: "sine.inOut" // Using the requested easing function
+        });
+      }
+    }
+  };
+  
+  // Handle link click - either navigate or scroll
+  const handleLinkClick = (e, sectionId, isHomePage) => {
+    // If we're on the home page, prevent default navigation and scroll instead
+    if (location.pathname === '/' && isHomePage) {
+      e.preventDefault();
+      scrollToSection(sectionId);
+    }
   };
   
   return (
@@ -283,7 +322,16 @@ const Header = () => {
         <div className="hidden md:flex items-center justify-between">
           {/* Left: Name */}
           <div className="flex-shrink-0">
-            <Link to="/" className="text-xl lg:text-2xl font-bold font-orbitron text-[#a0b4cc]">
+            <Link 
+              to="/" 
+              className="text-xl lg:text-2xl font-bold font-orbitron text-[#a0b4cc]"
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  scrollToSection('hero');
+                }
+              }}
+            >
               Sandith Sithmaka
             </Link>
           </div>
@@ -292,38 +340,54 @@ const Header = () => {
           <nav className="flex-grow flex justify-center">
             <ul className="flex font-orbitron space-x-8">
               <li>
-                <NavLink to="/" className={({isActive}) =>
-                  isActive 
-                    ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-[#2a3a50]" 
-                    : "text-white hover:text-[#a0b4cc] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
-                }>
+                <NavLink 
+                  to="/" 
+                  className={({isActive}) =>
+                    isActive 
+                      ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full" 
+                      : "text-white hover:text-[#a0b4cc] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
+                  }
+                  onClick={(e) => handleLinkClick(e, 'hero', true)}
+                >
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/about" className={({isActive}) =>
-                  isActive 
-                    ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-[#2a3a50]" 
-                    : "text-white hover:text-[#a0b4cc] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
-                }>
+                <NavLink 
+                  to={location.pathname === '/' ? '#about' : '/about'} 
+                  className={({isActive}) =>
+                    (isActive || (location.pathname === '/' && location.hash === '#about')) 
+                      ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full" 
+                      : "text-white hover:text-[#a0b4cc] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
+                  }
+                  onClick={(e) => handleLinkClick(e, 'about', true)}
+                >
                   About
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/projects" className={({isActive}) =>
-                  isActive 
-                    ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-[#2a3a50]" 
-                    : "text-white hover:text-[#a0b4cc] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
-                }>
+                <NavLink 
+                  to={location.pathname === '/' ? '#projects' : '/projects'} 
+                  className={({isActive}) =>
+                    (isActive || (location.pathname === '/' && location.hash === '#projects')) 
+                      ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full" 
+                      : "text-white hover:text-[#a0b4cc] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
+                  }
+                  onClick={(e) => handleLinkClick(e, 'projects', true)}
+                >
                   Projects
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/contact" className={({isActive}) =>
-                  isActive 
-                    ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-[#2a3a50]" 
-                    : "text-white hover:text-[#a0b4cc] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
-                }>
+                <NavLink 
+                  to={location.pathname === '/' ? '#contact' : '/contact'} 
+                  className={({isActive}) =>
+                    (isActive || (location.pathname === '/' && location.hash === '#contact')) 
+                      ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full" 
+                      : "text-white hover:text-[#a0b4cc] transition-colors relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
+                  }
+                  onClick={(e) => handleLinkClick(e, 'contact', true)}
+                >
                   Contact
                 </NavLink>
               </li>
@@ -333,7 +397,7 @@ const Header = () => {
           {/* Right: GitHub button */}
           <div className="flex-shrink-0">
             <a 
-              href="https://github.com/SandithSithmaka" 
+              href="https://github.com/Sandith02" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="bg-gray-800/50 hover:bg-gray-700/80 text-white font-orbitron py-2 px-4 rounded-md transition-all duration-300 flex items-center border border-gray-700/50 hover:border-[#2a3a50] hover:shadow-[0_0_15px_rgba(160,180,204,0.15)]"
@@ -346,7 +410,16 @@ const Header = () => {
         
         {/* Mobile layout */}
         <div className="flex md:hidden items-center justify-between">
-          <Link to="/" className="text-xl font-bold font-orbitron text-[#a0b4cc]">
+          <Link 
+            to="/" 
+            className="text-xl font-bold font-orbitron text-[#a0b4cc]"
+            onClick={(e) => {
+              if (location.pathname === '/') {
+                e.preventDefault();
+                scrollToSection('hero');
+              }
+            }}
+          >
             Sandith Sithmaka
           </Link>
           
@@ -403,35 +476,71 @@ const Header = () => {
             <li className="py-2">
               <NavLink
                 to="/"
-                className={({isActive}) => isActive ? "text-[#a0b4cc] font-medium" : "text-white hover:text-[#a0b4cc]"}
-                onClick={() => setIsMenuOpen(false)}
+                className={({isActive}) => isActive ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full" : "text-white hover:text-[#a0b4cc] relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"}
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    scrollToSection('hero');
+                  }
+                }}
               >
                 Home
               </NavLink>
             </li>
             <li className="py-2">
               <NavLink
-                to="/about"
-                className={({isActive}) => isActive ? "text-[#a0b4cc] font-medium" : "text-white hover:text-[#a0b4cc]"}
-                onClick={() => setIsMenuOpen(false)}
+                to={location.pathname === '/' ? '#about' : '/about'}
+                className={({isActive}) => 
+                  (isActive || (location.pathname === '/' && location.hash === '#about')) 
+                    ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full" 
+                    : "text-white hover:text-[#a0b4cc] relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
+                }
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    scrollToSection('about');
+                  }
+                }}
               >
                 About
               </NavLink>
             </li>
             <li className="py-2">
               <NavLink
-                to="/projects"
-                className={({isActive}) => isActive ? "text-[#a0b4cc] font-medium" : "text-white hover:text-[#a0b4cc]"}
-                onClick={() => setIsMenuOpen(false)}
+                to={location.pathname === '/' ? '#projects' : '/projects'}
+                className={({isActive}) => 
+                  (isActive || (location.pathname === '/' && location.hash === '#projects')) 
+                    ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full" 
+                    : "text-white hover:text-[#a0b4cc] relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
+                }
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    scrollToSection('projects');
+                  }
+                }}
               >
                 Projects
               </NavLink>
             </li>
             <li className="py-2">
               <NavLink
-                to="/contact"
-                className={({isActive}) => isActive ? "text-[#a0b4cc] font-medium" : "text-white hover:text-[#a0b4cc]"}
-                onClick={() => setIsMenuOpen(false)}
+                to={location.pathname === '/' ? '#contact' : '/contact'}
+                className={({isActive}) => 
+                  (isActive || (location.pathname === '/' && location.hash === '#contact')) 
+                    ? "text-[#a0b4cc] font-medium relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full" 
+                    : "text-white hover:text-[#a0b4cc] relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2a3a50] after:transition-all hover:after:w-full"
+                }
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    scrollToSection('contact');
+                  }
+                }}
               >
                 Contact
               </NavLink>

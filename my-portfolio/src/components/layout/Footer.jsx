@@ -142,13 +142,42 @@
 
 // export default Footer;
 
-// src/components/layout/Footer.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Github, Linkedin, Twitter, Mail, MapPin } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+// Register ScrollToPlugin
+gsap.registerPlugin(ScrollToPlugin);
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  
+  // Enhanced scroll function using GSAP
+  const scrollToSection = (sectionId, e) => {
+    // Only scroll if we're on the home page
+    if (location.pathname === '/') {
+      e.preventDefault();
+      
+      const section = document.getElementById(sectionId);
+      if (section) {
+        // Get height of header for offset (adjust the value based on your header height)
+        const headerOffset = 80;
+        
+        // Use GSAP to scroll
+        gsap.to(window, {
+          duration: 1, // Adjust duration for smoother/faster scroll
+          scrollTo: {
+            y: `#${sectionId}`,
+            offsetY: headerOffset
+          },
+          ease: "sine.inOut" // Smooth easing function
+        });
+      }
+    }
+  };
   
   return (
     <footer className="relative py-12 overflow-hidden font-orbitron">
@@ -169,7 +198,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
           {/* Column 1: Logo & Copyright */}
           <div className="flex flex-col items-center md:items-start">
-            <Link to="/" className="text-xl font-bold text-[#a0b4cc] mb-4 hover:text-white transition-colors">
+            <Link 
+              to="/" 
+              className="text-xl font-bold text-[#a0b4cc] mb-4 hover:text-white transition-colors"
+              onClick={(e) => scrollToSection('hero', e)}
+            >
               Sandith Sithmaka
             </Link>
             <p className="text-gray-400 text-sm">
@@ -184,16 +217,32 @@ const Footer = () => {
           <div className="flex flex-col">
             <h3 className="text-[#a0b4cc] mb-4 text-lg">Navigation</h3>
             <div className="grid grid-cols-2 gap-2">
-              <Link to="/" className="text-gray-400 hover:text-[#a0b4cc] transition-colors">
+              <Link 
+                to={location.pathname === '/' ? '/#hero' : '/'} 
+                className="text-gray-400 hover:text-[#a0b4cc] transition-colors"
+                onClick={(e) => scrollToSection('hero', e)}
+              >
                 Home
               </Link>
-              <Link to="/about" className="text-gray-400 hover:text-[#a0b4cc] transition-colors">
+              <Link 
+                to={location.pathname === '/' ? '/#about' : '/about'} 
+                className="text-gray-400 hover:text-[#a0b4cc] transition-colors"
+                onClick={(e) => scrollToSection('about', e)}
+              >
                 About
               </Link>
-              <Link to="/projects" className="text-gray-400 hover:text-[#a0b4cc] transition-colors">
+              <Link 
+                to={location.pathname === '/' ? '/#projects' : '/projects'} 
+                className="text-gray-400 hover:text-[#a0b4cc] transition-colors"
+                onClick={(e) => scrollToSection('projects', e)}
+              >
                 Projects
               </Link>
-              <Link to="/contact" className="text-gray-400 hover:text-[#a0b4cc] transition-colors">
+              <Link 
+                to={location.pathname === '/' ? '/#contact' : '/contact'} 
+                className="text-gray-400 hover:text-[#a0b4cc] transition-colors"
+                onClick={(e) => scrollToSection('contact', e)}
+              >
                 Contact
               </Link>
             </div>
@@ -206,7 +255,7 @@ const Footer = () => {
               {/* Social Icons */}
               <div className="flex space-x-4">
                 <a 
-                  href="https://github.com/SandithSithmaka" 
+                  href="https://github.com/Sandith02" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-[#a0b4cc] transition-all group"
@@ -215,7 +264,7 @@ const Footer = () => {
                   <Github className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </a>
                 <a 
-                  href="https://linkedin.com/in/sithmaka" 
+                  href="https://www.linkedin.com/in/sandith02/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-[#a0b4cc] transition-all group"
@@ -224,7 +273,7 @@ const Footer = () => {
                   <Linkedin className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </a>
                 <a 
-                  href="https://twitter.com/SandithSithmaka" 
+                  href="https://x.com/Sandith02?t=uzExcgCq8Ui_uAnHYh5kJg&s=09" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-[#a0b4cc] transition-all group"
