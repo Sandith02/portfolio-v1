@@ -236,7 +236,7 @@ const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-md bg-gray-800/50 border border-gray-700/50 text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2a3a50] focus:border-transparent transition-all duration-300"
-                      placeholder="John Doe"
+                      placeholder="Sandith Sithmaka Thenuwara"
                       required
                     />
                   </div>
@@ -252,7 +252,7 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-md bg-gray-800/50 border border-gray-700/50 text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2a3a50] focus:border-transparent transition-all duration-300"
-                      placeholder="john@example.com"
+                      placeholder="lhthenuwara@gmail.com"
                       required
                     />
                   </div>
