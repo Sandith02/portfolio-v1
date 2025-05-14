@@ -160,7 +160,7 @@ Technologies:
 - REST API
 
 Links:
-- GitHub: https://github.com/Sandith02/OOP-CW
+- GitHub: https://github.com/Sandith02/CW_OOP-Fullstack-ApplicationW
       `
     },
     '~/projects/real-estate.txt': {
@@ -711,7 +711,7 @@ Links:
             <span>GitHub</span>
           </a>
           <a 
-            href="https://linkedin.com/in/sithmaka" 
+            href="https://www.linkedin.com/in/sandith02/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:text-gray-200 flex items-center"

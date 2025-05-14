@@ -364,8 +364,8 @@ const SkillsComponent = () => {
             
             <div className="flex flex-wrap gap-3">
               {[
-                "TypeScript", "Redux", "Webpack", "RESTful APIs", "GraphQL", 
-                "Responsive Design", "UI/UX", "AWS", "CI/CD", "Agile", "Scrum",
+                "TypeScript", "RESTful APIs", "Netlify",  
+                "Responsive Design", "UI/UX", "GSAP", "Vercel", "CI/CD", "Agile", "Scrum",
                 "Problem Solving", "Team Collaboration", "Technical Writing"
               ].map((skill, index) => (
                 <span 
