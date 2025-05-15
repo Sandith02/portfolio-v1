@@ -58,6 +58,7 @@ const ProjectsSection = () => {
       tags: ["React", "CSS"],
       category: "front-end",
       github: "https://github.com/Sandith02/Real-State-Web-Frontend",
+      Render: "https://real-state-web-frontend.vercel.app/",
       featured: true
     },
     {
