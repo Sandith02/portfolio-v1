@@ -516,7 +516,7 @@ const SplashScreen = ({ onComplete }) => {
             &lt;Beyond /&gt; Code
           </h1>
           <p className="text-lg text-gray-400 mt-2 font-michroma">
-            Turning vision into digital reality
+            #TheDeveloperInMe
           </p>
         </div>
         

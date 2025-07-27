@@ -332,7 +332,7 @@ const Header = () => {
                 }
               }}
             >
-              Sandith Sithmaka
+              #TheDeveloperInMe
             </Link>
           </div>
           
